@@ -12,23 +12,43 @@ class Api {
     return Promise.reject(`Ошибка: ${response.status}`);
   }
 
+  _getHeaders() {
+    let jwt = localStorage.getItem('jwt');
+    return { ...this.headers, 
+             'Authorization': `Bearer ${jwt}`
+           }
+  }
+
   // Получение данных пользователя(моих)
   getUserInfo() {
     return fetch(this.baseUrl + 'users/me', {
-      headers: {
-        ...this.headers,
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      }
+      headers: this._getHeaders(),
     }).then(this._getResponse);
   }
+
+  // или
+  // getUserInfo() {
+  //   return fetch(this.baseUrl + 'users/me', {
+  //     headers: {
+  //       ...this.headers,
+  //       'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+  //     }
+  //   }).then(this._getResponse);
+  // }
  
   // Получение данных всех карточек
+  // getCardsList() {
+  //   return fetch(this.baseUrl + 'cards', { // либо `${this.baseUrl}cards` и в результате конкатенации получается https://mesto.nomoreparties.co/v1/cohort-26/cards
+  //     headers: {
+  //       ...this.headers,
+  //       'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+  //     }
+  //   }).then(this._getResponse);
+  // }
+
   getCardsList() {
     return fetch(this.baseUrl + 'cards', { // либо `${this.baseUrl}cards` и в результате конкатенации получается https://mesto.nomoreparties.co/v1/cohort-26/cards
-      headers: {
-        ...this.headers,
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      }
+      headers: this._getHeaders(),
     }).then(this._getResponse);
   }
 
@@ -40,11 +60,9 @@ class Api {
         name: card_name,
         link: card_image_link
       }),
-      headers: {
-        ...this.headers,
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      }
-    }).then(this._getResponse);
+      headers: this._getHeaders(),
+    })
+    .then(this._getResponse);
   }
 
   // Редактирование профиля
@@ -55,10 +73,7 @@ class Api {
         name: userName,
         about: userDescription,
       }),
-      headers: {
-        ...this.headers,
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      }
+      headers: this._getHeaders(),
     })
     .then(this._getResponse);
   }
@@ -70,10 +85,7 @@ class Api {
       body: JSON.stringify({
         avatar: avatarUrl
       }),
-      headers: {
-        ...this.headers,
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      }
+      headers: this._getHeaders(),
     })
     .then(this._getResponse);
   }
@@ -82,10 +94,7 @@ class Api {
   deleteCard(id) {
     return fetch(`${this.baseUrl}cards/${id}`, {
       method: 'DELETE',
-      headers: {
-        ...this.headers,
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      }
+      headers: this._getHeaders(),
     })
     .then(this._getResponse);
   }
@@ -113,10 +122,7 @@ class Api {
   changeLikeCardStatus(id, isLiked) {
     return fetch(`${this.baseUrl}cards/${id}/likes`, {
       method: isLiked ? 'DELETE' : 'PUT', //если карточка уже лайкнута(черный лайк), то удалить лайк, иначе поставить
-      headers: {
-        ...this.headers,
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-      }
+      headers: this._getHeaders(),
     })
     .then(this._getResponse);
   }

@@ -168,6 +168,17 @@ function App() {
     return () => document.removeEventListener('keydown', closeByEscape)
   }, [])
 
+  useEffect(() => {
+    const closeByOverlay = (e) => {
+      if(e.target.classList.contains('popup') || e.target.classList.contains('popup__close')) {
+        handleAllPopupsClose();
+      }
+    }
+    document.addEventListener('click', closeByOverlay)
+    return () => document.removeEventListener('click', closeByOverlay)
+
+  }, [])
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState('email');
   const history = useHistory();

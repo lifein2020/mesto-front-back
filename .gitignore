@@ -1,3 +1,6 @@
+#
+.DS_Store
+
 # Logs
 backend/logs
 backend/*.log
