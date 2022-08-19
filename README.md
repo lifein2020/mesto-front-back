@@ -1,32 +1,98 @@
-# react-mesto-api-full
-Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд в директории `backend/`, а фронтенд - в `frontend/`. 
-# Cсылка на сайт
-http://mesto.zhivtsova.nomoredomains.rocks
+# Mesto (frontend + backend)
 
-# Публичный IP-адрес сервера
-62.84.125.79
+Responsive development interactive application including frontend and backend parts.  
 
-## Директории `backend/`
+## Functionality:
+* registration
+* authorization
+* edit profile data
+* change the avatar
+* add, delete, zoom images
+* put likes
+* likes counter
+* modal pop-up 
 
-`/routes` — папка с файлами роутера  
-`/controllers` — папка с файлами контроллеров пользователя и карточки   
-`/models` — папка с файлами описания схем пользователя и карточки  
+## Technology stack:
+* React.js
+* CSS
+* BEM, file structure organization Nested (frontend/scr/blocks)
+* Express.js
+* MongoDB
+* npm:
 
-Остальные директории вспомогательные:
-`middlewares` - папка с файлами, в которую вынесена логика авторизации, логера запросов и ошибок, cors защиты
+install express.js:
+    `npm install express`
 
-`.eslintrc` - файл с кастомным правилом
+install [https://www.npmjs.com/package/mongoose](Mongoose) is a MongoDB object modeling tool designed to work in an asynchronous environment:
+    `npm i mongoose`
 
-## Устанавливаем зависимости
-* Сбор логов
-npm install winston --save
-npm install winston express-winston
+so that the server is restarted when the project files are changed:
+    `npm install nodemon -D`
 
-* Для загрузки файла .env в Node.js
-npm install dotenv
+to include the [https://joi.dev/api/](Joi) validation as a middleware,[https://github.com/arb/celebrate](celebrate) library is used:
+    `npm i celebrate`
 
-## Запуск проекта
+[https://www.npmjs.com/package/dotenv.](dotenv) for loading .env file in Node.js:
+    `npm install dotenv`
 
-`npm run start` — запускает сервер   
-`npm run dev` — запускает сервер с hot-reload
-`npm run build` — запускает сервер 
+instal a library of string validators and sanitizers [https://www.npmjs.com/package/validator](validator):
+    `npm i validator`
+
+an implementation of JSON Web Tokens:
+    `npm install jsonwebtoken`
+
+instal [https://www.npmjs.com/package/cors](CORS) is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options:
+    `npm install cors`
+
+logs assembly using logging library [https://www.npmjs.com/package/winston](Winston):
+    `npm install winston --save`
+    `npm install winston express-winston`
+
+instal [https://www.npmjs.com/package/eslint](ESLint) is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code:
+    `npm init @eslint/config`
+
+to make the linter work according to the rules of the Airbnb style guide:
+    ``` bash
+    eslint-config-airbnb-base
+    eslint-plugin-import
+    ```
+
+## Directory `backend/`
+`app.js` - includes the main logic of the server, starting and connecting to the database
+`/routes` - folder with router files
+`/controllers` - folder with user and card controllers files
+`/models` - folder with description files for user and card schemes
+
+The auxiliary directories:
+`middlewares` - a folder with files that contains the authorization logic, request and error logger, cors protection
+
+`.eslintrc` - custom rule file
+
+## Getting Started:
+
+    ```bash
+    npm install
+    ```
+* Frontend
+Builds a project for priduction into the dist folder:
+    ```bash
+    npm run build
+    ```
+
+Run the development server:
+    ```bash
+    npm run start
+    ```
+
+* Backend
+Run express-server on port 3005:
+    `npm run start`
+
+Run server with hot-reload:
+    `npm run dev`
+
+[http://localhost:3005](http://localhost:3005) will be open on your browser to see the result.
+
+Run the application:
+`node-index.js
+# The terminal will show the message "App listening on Port 3000"`
