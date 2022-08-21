@@ -5,7 +5,7 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser}) {
 
-    // управляемые компоненты (input)
+    // managed components (input)
     const [userName, setUserName] = useState(''); 
     function handleChangeName(e) {
         setUserName(e.target.value);
@@ -15,20 +15,20 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser}) {
         setUserDescription(e.target.value);
     }
 
-    //Чтобы подставить в форму текущие значения:
-    //1. подписываемся на контекст
+    // To substitute the current values into the form:
+    // 1. subscribe to the context
     const currentUser = React.useContext(CurrentUserContext); 
 
-    //2. после загрузки текущего пользователя из API его данные будут использованы в управляемых компонентах.
+    //2. after loading the current user from the API, his data will be used in managed components
     useEffect(() => {
         setUserName(currentUser.name);
         setUserDescription(currentUser.about);
-    }, [currentUser, isOpen]); //Нужно еще следить за isOpen (за состоянием открытия), чтобы вставлять в инпуты данные пользователя, иначе, если мы удалим информацию из инпутов и просто закроем попап, то при следующем открытии инпуты будут пустые (без данных пользователя)
+    }, [currentUser, isOpen]); // we also need to monitor isOpen (the state of opening) in order to insert user data into the inputs, otherwise, if we delete information from the inputs and simply close the popup, then the next time we open the inputs will be empty (without user data)
 
     function handleSubmit(e) {
-        // Запрещаем браузеру переходить по адресу формы
+        // Prevent the browser from navigating to the URL of the form
         e.preventDefault();
-        // Передаём значения управляемых компонентов во внешний обработчик
+        // Passing the values of managed beans to an external handler
         onUpdateUser({ userName, userDescription });
     }
 
@@ -36,9 +36,9 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser}) {
         <PopupWithForm
             name="edit"
             id="formEdit"
-            title="Редактировать профиль"
+            title="Edit profile"
             button="save"
-            titleButton="Сохранить"
+            titleButton="Save"
             isOpen={isOpen}
             onClose={onClose}
             onSubmit={handleSubmit}
@@ -49,7 +49,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser}) {
             id="name-input"
             name="name"
             required
-            placeholder="Имя"
+            placeholder="Name"
             minLength="2"
             maxLength="40"
             value={userName || ''}
@@ -65,7 +65,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser}) {
             id="job-input"
             name="job"
             required
-            placeholder="Род занятий"
+            placeholder="Activity"
             minLength="2"
             maxLength="200"
             value={userDescription || ''}

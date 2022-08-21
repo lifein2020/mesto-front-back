@@ -2,24 +2,23 @@ import React from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Card(props) {
-    //Подписываемся на контекст CurrentUserContext
+    // Subscribe to contextCurrentUserContext
     const currentUser = React.useContext(CurrentUserContext);
 
-    //Показать иконку удаления:
-    // 1)определяем, являемся ли мы владельцем текущей карточки
+    // Show delete icon:
+    // 1) determine if we are the owner of the current card
     const isOwn = props.card.owner === currentUser._id;
    
-    // 2)создаём переменную, которую после зададим в `className` для кнопки удаления
+    // 2) create a variable, which we then set in `className` for the delete button
     const cardDeleteButtonClassName = (
      `element__trash ${isOwn ? 'element__trash_visible' : 'element__trash'}` 
     ); 
   
-    // Определить, поставили ли мы уже «лайк» этой карточке:
-    // 1)определяем, есть ли у карточки лайк, поставленный текущим пользователем
-    // const isLiked = props.card.likes.some(i => i._id === currentUser._id); // из 12спринта
+    // Determine if we have already "liked" this card:
+    // 1) determine if the card has a like set by the current user
     const isLiked = props.card.likes.some(i => i === currentUser._id);
 
-    // 2)создаём переменную, которую после зададим в `className` для кнопки лайка
+    // 2) create a variable, which we will then set in `className` for the like button
     const cardLikeButtonClassName = (
         `element__like ${isLiked ? 'element__like_active' : 'element__like'}`
     );    

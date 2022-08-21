@@ -5,7 +5,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
 
     const urlInput = useRef();
 
-    //устанавливаем в поле ввода ссылку по умолчанию при открытии попапа
+    // set the default link in the input field when opening the popup
     useEffect(() => {
         const currentUrlInput = urlInput.current;
         currentUrlInput.value = '';
@@ -15,9 +15,9 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
         e.preventDefault();
     
         onUpdateAvatar({
-          avatarUrl: urlInput.current.value /* значение инпута, полученное с помощью рефа*/
+          avatarUrl: urlInput.current.value /* the value of the input received using the ref */
         });
-        // очищаем инпут после успешного добавления информации
+        // clear the input after successfully adding information
         urlInput.current.value = '';
       } 
 
@@ -25,9 +25,9 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
         <PopupWithForm
             name="avatar"
             id="formAvatar"
-            title="Обновить аватар"
+            title="Update avatar"
             button="save"
-            titleButton="Сохранить"
+            titleButton="Save"
             isOpen={isOpen}
             onClose={onClose}
             onSubmit={handleSubmit}
@@ -39,7 +39,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
             name="avatar_link"
             autoComplete="on"
             required
-            placeholder="Ссылка на аватар"
+            placeholder="Link to the avatar"
             //value="https://somewebsite.com/someimage.jpg"
             ref={urlInput}
             />

@@ -11,7 +11,7 @@ function Footer() {
 export default Footer;
 
 
-/* Показывать только на главной странице
+/* Case for show only on homepage
 import { Route } from 'react-router-dom';
 
 function Footer() {
@@ -25,6 +25,6 @@ function Footer() {
     );
 }
 
-В App.js при этом:
+In App.js in this case:
 {loggedIn && <Footer />} 
  */

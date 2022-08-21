@@ -4,7 +4,7 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
 
-    // управляемые компоненты (input)
+    // managed components (input)
     const [cardName, setCardName] = useState('');
     function handleChangeCardName(e) {
         setCardName(e.target.value);
@@ -22,7 +22,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
             card_name: cardName, 
             card_image_link : cardImage,
         });
-        // очищаем инпуты после успешного добавления информации
+        // clearing the inputs after successfully adding information
         setCardName('');
         setCardImage('');
     }
@@ -31,9 +31,9 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         <PopupWithForm
             name="add-card"
             id="formAdd"
-            title="Новое место"
+            title="New place"
             button="button_disabled"
-            titleButton="Создать"
+            titleButton="Create"
             isOpen={isOpen}
             onClose={onClose}
             onSubmit={handleSubmit}
@@ -45,7 +45,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
                 name="card_name"
                 autoComplete="off"
                 required
-                placeholder="Название"
+                placeholder="Title"
                 minLength="2"
                 maxLength="30"
                 value={cardName}
@@ -62,7 +62,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
                 name="card_image_link"
                 autoComplete="on"
                 required
-                placeholder="Ссылка на картинку"
+                placeholder="Link to the picture"
                 value={cardImage}
                 onChange={handleChangeCardImage}
             />

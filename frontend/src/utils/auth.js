@@ -1,8 +1,6 @@
-// export const BASE_URL = 'https://auth.nomoreparties.co';
 export const BASE_URL = 'http://localhost:3005';
-// export const BASE_URL = 'http://api.mesto.zhivtsova.nomoredomains.rocks';
 
-//Проверка ответ от сервера
+// Сhecking the response from the server
 const getResponse = (response) => {
     if (response.ok) {
         return response.json();
@@ -34,7 +32,7 @@ export const authorize = (password, email) => {
     .then(getResponse);
 };
 
-//Проверка токена
+// Token verification
 export const getContent = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',

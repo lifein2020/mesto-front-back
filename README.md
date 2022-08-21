@@ -10,7 +10,7 @@ Responsive development interactive application including frontend and backend pa
 * add, delete, zoom images
 * put likes
 * likes counter
-* modal pop-up 
+* modals pop-up 
 
 ## Technology stack:
 * React.js
@@ -91,8 +91,4 @@ Run express-server on port 3005:
 Run server with hot-reload:
     `npm run dev`
 
-[http://localhost:3005](http://localhost:3005) will be open on your browser to see the result.
-
-Run the application:
-`node-index.js
-# The terminal will show the message "App listening on Port 3000"`
+[http://localhost:3000](http://localhost:3000) will be open on your browser to see the result.

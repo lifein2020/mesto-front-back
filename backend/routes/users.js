@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 
 const validator = require('validator');
-// валидация ссылок на аватар
+// avatar link validation
 const method = (value) => {
   const result = validator.isURL(value);
   if (result) {
@@ -19,20 +19,20 @@ const {
   getUserMe,
 } = require('../controllers/users');
 
-// возвращает информацию о текущем пользователе
+// returns information about the current user
 router.get('/users/me', getUserMe);
 
-//  возвращает всех пользователей
+//  returns all users
 router.get('/users', getUsers);
 
-// возвращает пользователя по _id
+// returns user by _id
 router.get('/users/:userId', celebrate({
   params: Joi.object().keys({
     userId: Joi.string().hex().length(24).required(),
   }),
 }), getUserProfile);
 
-// обновляет профиль
+// updates the profile
 router.patch('/users/me', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
@@ -40,7 +40,7 @@ router.patch('/users/me', celebrate({
   }),
 }), updateUser); //   :userId
 
-// обновляет аватар
+// updates the avatar
 router.patch('/users/me/avatar', celebrate({
   body: Joi.object().keys({
     avatar: Joi.string().required().custom(method), // Joi.string().required().pattern(URL_REGEX)

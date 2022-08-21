@@ -4,7 +4,7 @@ class Api {
     this.headers = headers;
   }
 
-  // Обработка ответа с сервера
+  // Handling of responses from server
   _getResponse(response) {
     if (response.ok) {
       return response.json();
@@ -19,40 +19,20 @@ class Api {
            }
   }
 
-  // Получение данных пользователя(моих)
+  // Getting user data (mine)
   getUserInfo() {
     return fetch(this.baseUrl + 'users/me', {
       headers: this._getHeaders(),
     }).then(this._getResponse);
   }
 
-  // или
-  // getUserInfo() {
-  //   return fetch(this.baseUrl + 'users/me', {
-  //     headers: {
-  //       ...this.headers,
-  //       'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-  //     }
-  //   }).then(this._getResponse);
-  // }
- 
-  // Получение данных всех карточек
-  // getCardsList() {
-  //   return fetch(this.baseUrl + 'cards', { // либо `${this.baseUrl}cards` и в результате конкатенации получается https://mesto.nomoreparties.co/v1/cohort-26/cards
-  //     headers: {
-  //       ...this.headers,
-  //       'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-  //     }
-  //   }).then(this._getResponse);
-  // }
-
   getCardsList() {
-    return fetch(this.baseUrl + 'cards', { // либо `${this.baseUrl}cards` и в результате конкатенации получается https://mesto.nomoreparties.co/v1/cohort-26/cards
+    return fetch(this.baseUrl + 'cards', { 
       headers: this._getHeaders(),
     }).then(this._getResponse);
   }
 
-  // Добавление карточек
+  // Add cards
   postAddCard({ card_name, card_image_link }) {
     return fetch(`${this.baseUrl}cards`, {
       method: 'POST',
@@ -65,7 +45,7 @@ class Api {
     .then(this._getResponse);
   }
 
-  // Редактирование профиля
+  // Edit the profile
   patchUserInfo({userName, userDescription}) {
     return fetch(this.baseUrl + 'users/me', { //`${this.baseUrl}users/me`
       method: 'PATCH',
@@ -78,7 +58,7 @@ class Api {
     .then(this._getResponse);
   }
 
-  // Смена аватара
+  // Change the avatar
   patchAvatarUser({ avatarUrl }) {
     return fetch(this.baseUrl + 'users/me/avatar', { //`${this.baseUrl}users/me/avatar`
       method: 'PATCH',
@@ -90,7 +70,7 @@ class Api {
     .then(this._getResponse);
   }
 
-  // Удаление карточки
+  // Delete card
   deleteCard(id) {
     return fetch(`${this.baseUrl}cards/${id}`, {
       method: 'DELETE',
@@ -100,28 +80,9 @@ class Api {
   }
 
   // Поставить лайк
-  /*putLikeCard(id) {
-    return fetch(`${this.baseUrl}cards/likes/${id}`, {
-      method: 'PUT',
-      headers: this.headers
-    })
-    .then(this._getResponse);
-  }
-
-  // Удалить лайк:
-  //--------- 2 вариант рабочий----------
-  deliteLikeCard(id) {
-    return fetch(`${this.baseUrl}cards/${id}/likes`, {
-      method: 'DELETE',
-      headers: this.headers
-    })
-    .then(this._getResponse);
-  }*/
-
-  //-------- 1 вариант рабочий---------
   changeLikeCardStatus(id, isLiked) {
     return fetch(`${this.baseUrl}cards/${id}/likes`, {
-      method: isLiked ? 'DELETE' : 'PUT', //если карточка уже лайкнута(черный лайк), то удалить лайк, иначе поставить
+      method: isLiked ? 'DELETE' : 'PUT', // if the card is already liked (black like), then delete the like, otherwise put
       headers: this._getHeaders(),
     })
     .then(this._getResponse);
@@ -130,7 +91,6 @@ class Api {
 
 const api = new Api({
   baseUrl: 'http://localhost:3005/',
-  // baseUrl: 'http://api.mesto.zhivtsova.nomoredomains.rocks/',
   headers: {
     'Content-Type': 'application/json'
   }

@@ -27,7 +27,7 @@ import fail from '../../images/fail.svg';
 
 function App() {
 
-  //Для компонента Main:
+  // For component Main:
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const handleEditProfileClick = () => {
     setIsEditProfileOpen(true);
@@ -53,7 +53,7 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [message, setMessage] = useState({image: "", text: ""});
 
-  //Для компонентов папапов
+  // For component of models
   const handleAllPopupsClose = () => {
     setIsEditProfileOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -63,22 +63,21 @@ function App() {
     setIsInfoTooltipOpen(false);
   }
 
-  //Для компонента Main, чтобы потом перебросить в Card через props:
+  // For the Main component, in order to then transfer it to the Card via props:
   //1.
-  const [currentUser, setCurrentUser] = useState({name: 'Жак-Ив Кусто', about: 'Исследователь океана', avatar: kusto});
+  const [currentUser, setCurrentUser] = useState({name: 'Jacques-Yves Cousteau', about: 'Ocean explorer', avatar: kusto});
   const [cards, setCards] = useState([]);
   
 
   //3.
   const handleCardLike = (card) => {
-    // Снова проверяем, есть ли уже лайк на этой карточке
-   
+    // check again if there is already a like on this card
      const isLiked = card.likes.some(i => i === currentUser._id); 
-    // Отправляем запрос в API и получаем обновлённые данные карточки
+    // send a request to the API and get the updated card data
     api.changeLikeCardStatus(card._id, isLiked)
     .then((newCard) => {
         //setCards((state) => state.map((c) => c === card._id ? newCard : c));
-        // либо
+        // or
         const newCards = cards.map((c) => (c._id === card._id ? newCard.card : c));
         setCards(newCards);
   
@@ -100,20 +99,18 @@ function App() {
     })
   }
 
-  //Для компонента EditProfilePopup
+  // For component EditProfilePopup
   const handleUpdateUser = ({userName, userDescription}) => {
-    // отправляем значения инпутов(то, что ввели)
+    // send input values (what you entered)
     api.patchUserInfo({userName, userDescription}) 
     .then((dataProfile) => {
-      //console.log(dataProfile)
       setCurrentUser({
         name: dataProfile.data.name, 
         about: dataProfile.data.about,
-        avatar: dataProfile.data.avatar, // чтобы аватар тоже отображался 
+        avatar: dataProfile.data.avatar, // in order to the avatar is also displayed
         likes: dataProfile.data.likes,
-        _id: dataProfile.data._id, //чтобы лайки проставлялись после обновления профиля
+        _id: dataProfile.data._id, // in order to likes are put down after updating the profile
       });
-      //handleAllPopupsClose();
     })
     .then(() => {
       handleAllPopupsClose();
@@ -123,14 +120,14 @@ function App() {
     }) 
   }
 
-  //Для компонента EditAvatarPopup
+  // For component EditAvatarPopup
   const handleUpdateAvatar = ({ avatarUrl }) => {
-    //отправляем то, что ввели в инпут
+    // send what was entered into the input
     api.patchAvatarUser({ avatarUrl })
     .then((dataProfile) => {
       setCurrentUser({
         avatar: dataProfile.data.avatar,
-        //чтобы данные профиля тоже отображались 
+        // in order to profile data is also displayed
         name: dataProfile.data.name, 
         about: dataProfile.data.about,
         _id: dataProfile.data._id,
@@ -144,7 +141,7 @@ function App() {
     })
   }
 
-  //Для компонента AddPlacePopup
+  // For component AddPlacePopup
   function handleAddPlaceSubmit({ card_name, card_image_link }) {
     api.postAddCard({ card_name, card_image_link })
     .then(newCard => {
@@ -194,7 +191,7 @@ function App() {
     .catch(err => console.log(err));
   };
 
-  // если у пользователя есть токен в localStorage, проверит валидность токена
+  // If the user has a token in localStorage, check if the token is valid
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
@@ -202,12 +199,12 @@ function App() {
     }
   }, [loggedIn]);
 
-  //если пользователь авторизован, проходит в систему
+  // If the user is authorized, passes into the system
   useEffect(() => {
     if (loggedIn) {
       history.push('/');
-      Promise.all([api.getUserInfo(), api.getCardsList()]) //получаем данные с сервера
-      .then(([userData, cardsArray]) => { // передаем эти данные для отрисовки на странице, см в консоли формат в котором приходят. Если правильно передали, то в Main передадуться чнрез props
+      Promise.all([api.getUserInfo(), api.getCardsList()]) // get data from server
+      .then(([userData, cardsArray]) => { // we pass this data for rendering on the page, see the format in which they arrive in the console. If it was passed correctly, then it will be transferred to Main through props
           setCurrentUser({
             name: userData.data.name, 
             about: userData.data.about, 
@@ -230,14 +227,14 @@ function App() {
       if (dataReg.data._id || dataReg.statusCode !== 400) {
         history.push('/sign-in');
         setIsInfoTooltipOpen(true);
-        setMessage({ image: success, text: 'Вы успешно зарегистрировались!' });
+        setMessage({ image: success, text: 'You have successfully registered!' });
       } else {
         return
       }
     })
     .catch( err => {
       setIsInfoTooltipOpen(true);
-      setMessage({ image: fail, text: 'Что-то пошло не так! Попробуйте ещё раз.' });
+      setMessage({ image: fail, text: 'Something went wrong! Try again.' });
       }
     )
   };
@@ -246,16 +243,16 @@ function App() {
     return auth.authorize(password, email)
     .then(dataLog => {
       if (dataLog.token) { 
-        setLoggedIn(true);                          //чтобы ProtectedRoute отображал маршрут /
+        setLoggedIn(true);                          // in order to make ProtectedRoute display the route /
         localStorage.setItem('jwt', dataLog.token);
-        history.push('/');                          //очищаем стейт и перенаправляем пользователя на страницу /
+        history.push('/');                          // clear the state and redirect the user to the page /
       } else {
           return
       }
     })
     .catch( err => {
       setIsInfoTooltipOpen(true);
-      setMessage({ image: fail, text: 'Что-то пошло не так! Попробуйте ещё раз.' });
+      setMessage({ image: fail, text: 'Something went wrong! Try again.' });
       }
     )
   };
@@ -304,7 +301,6 @@ function App() {
           <EditProfilePopup
           isOpen={isEditProfileOpen}
           onClose={handleAllPopupsClose}
-          //currentUser={currentUser}
           onUpdateUser={handleUpdateUser}
           >
           </EditProfilePopup>

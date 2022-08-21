@@ -11,15 +11,15 @@ function Header({ onSignOut, email }) {
         <header className="header">
             <img src={logo} className="header__logo" alt="Лототип проекта Место" />
             <Route path="/sign-up">
-                <Link className="header__sign-link" to="sign-in">Войти</Link>
+                <Link className="header__sign-link" to="sign-in">Sign in</Link>
             </Route>
             <Route path="/sign-in">
-                <Link className="header__sign-link" to="sign-up">Регистрация</Link>
+                <Link className="header__sign-link" to="sign-up">Sign up</Link>
             </Route>
             <Route exact path="/">
                 <div className="header__container">
                     <p className="header__user-email">{ email }</p>
-                    <button className="header__logout" onClick={handleSignOut}>Выйти</button>
+                    <button className="header__logout" onClick={handleSignOut}>Sign out</button>
                 </div>
             </Route>
         </header>

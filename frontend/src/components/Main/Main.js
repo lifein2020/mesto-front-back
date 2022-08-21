@@ -12,7 +12,7 @@ function Main(props) {
                 <div className="profile__container">
                     <img className="profile__avatar" src={currentUser.avatar} alt={currentUser.name} />
                     <div className="profile__overlay" onClick={props.onEditAvatar}>
-                        <img className="profile__pen" src={pen} alt="Карандаш" />
+                        <img className="profile__pen" src={pen} alt="Pencil" />
                     </div>
                 </div>
                 <div className="profile-info">

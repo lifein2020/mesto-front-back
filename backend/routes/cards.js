@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 
 const validator = require('validator');
-// валидация ссылок
+// link validation
 const method = (value) => {
   const result = validator.isURL(value);
   if (result) {
@@ -19,10 +19,10 @@ const {
   dislikeCard,
 } = require('../controllers/cards');
 
-//  возвращает все карточки
+// returns all cards
 router.get('/cards', getCards);
 
-//  создаёт карточку
+// creates a card
 router.post('/cards', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
@@ -30,21 +30,21 @@ router.post('/cards', celebrate({
   }),
 }), createCard);
 
-//  удаляет карточку по идентификатору
+//  delete card by id
 router.delete('/cards/:cardId', celebrate({
   params: Joi.object().keys({
     cardId: Joi.string().hex().length(24).required(),
   }),
 }), deleteCard);
 
-//  поставить лайк карточке
+// like the card
 router.put('/cards/:cardId/likes', celebrate({
   params: Joi.object().keys({
     cardId: Joi.string().hex().length(24).required(),
   }),
 }), likeCard);
 
-//  убрать лайк с карточки
+// remove like from card
 router.delete('/cards/:cardId/likes', celebrate({
   params: Joi.object().keys({
     cardId: Joi.string().hex().length(24).required(),

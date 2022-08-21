@@ -1,13 +1,12 @@
-const bcrypt = require('bcryptjs'); // импортируем bcrypt
-const jwt = require('jsonwebtoken');// импортируем модуль jsonwebtoken Для создания токенов
-const User = require('../models/user'); //  импортируем модель
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
-// const JWT_SECRET = 'the-world-is-not-enought';
 const { NODE_ENV, JWT_SECRET } = process.env;
 
-//  Создание документов
+//  Creating documents
 
-// возвращает информацию о текущем пользователе
+// return information about the current user
 const getUserMe = (req, res, next) => {
   User.findOne({ _id: req.user._id })
     .then((user) => {
@@ -18,7 +17,7 @@ const getUserMe = (req, res, next) => {
     });
 };
 
-//  возвращает всех пользователей
+// return all users
 const getUsers = (req, res, next) => {
   User.find({})
     .then((users) => {
@@ -29,12 +28,12 @@ const getUsers = (req, res, next) => {
     });
 };
 
-//  возвращает пользователя по _id
+//  return user by _id
 const getUserProfile = (req, res, next) => {
   const { userId } = req.params;
   return User.findById(userId) // (req.params.userId)
     .orFail(() => {
-      const err = new Error('Ресурс не найден'); // notFound
+      const err = new Error('Resource not found');
       err.statusCode = 404;
       throw err;
     })
@@ -46,7 +45,7 @@ const getUserProfile = (req, res, next) => {
         next(err);
       }
       if (err.name === 'CastError') {
-        const badRequest = new Error('Переданы некорректные данные');
+        const badRequest = new Error('Incorrect data has been sent');
         badRequest.statusCode = 400;
         next(badRequest);
       }
@@ -54,25 +53,25 @@ const getUserProfile = (req, res, next) => {
     });
 };
 
-//  создаёт пользователя
+// create a user
 const createUser = (req, res, next) => {
   User.findOne(({ email: req.body.email }))
     .then((user) => {
       if (user) {
-        const MongoServerError = new Error('Пользователь с таким email уже существует');
+        const MongoServerError = new Error('User with this email already exists');
         MongoServerError.statusCode = 409;
         MongoServerError.code = 11000;
         MongoServerError.name = 'MongoServerError';
         throw MongoServerError;
       }
-      return bcrypt.hash(req.body.password, 10); // хешируем пароль, 10 это соль
+      return bcrypt.hash(req.body.password, 10); // hash the password, 10 is the salt
     })
     .then((hash) => User.create({
       name: req.body.name,
       about: req.body.about,
       avatar: req.body.avatar,
       email: req.body.email,
-      password: hash, // записываем хеш в базу
+      password: hash, // write the hash to the database
     }))
     .then(({
       name,
@@ -89,11 +88,11 @@ const createUser = (req, res, next) => {
           email,
           _id,
         },
-      }); // .send({ data: newUser });
+      });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        const badRequest = new Error('Переданы некорректные данные');
+        const badRequest = new Error('Incorrect data has been sent');
         badRequest.statusCode = 400;
         next(badRequest);
       }
@@ -104,20 +103,20 @@ const createUser = (req, res, next) => {
     });
 };
 
-// обновляет профиль
+// updates the profile
 const updateUser = (req, res, next) => {
-  const { name, about } = req.body; // получим из объекта запроса имя и описание пользователя
+  const { name, about } = req.body; // get user name and description from the request object
   return User.findByIdAndUpdate(
     req.user._id,
     { name, about },
-    // Передаем объект опций чтобы передать в then  уже обновлённую запись:
+    // pass an options object to pass in then an already updated record
     {
-      new: true, // обработчик then получит на вход обновлённую запись
-      runValidators: true, // данные будут валидированы перед изменением
+      new: true, // the then handler will receive an updated record as input
+      runValidators: true, // data will be validated before change
     },
   )
     .orFail(() => {
-      const err = new Error('Ресурс не найден');
+      const err = new Error('Resource not found');
       err.statusCode = 404;
       throw err;
     })
@@ -129,7 +128,7 @@ const updateUser = (req, res, next) => {
         next(err);
       }
       if (err.name === 'ValidationError') {
-        const badRequest = new Error('Переданы некорректные данные');
+        const badRequest = new Error('Incorrect data has been sent');
         badRequest.statusCode = 400;
         next(badRequest);
       }
@@ -137,7 +136,7 @@ const updateUser = (req, res, next) => {
     });
 };
 
-//  обновляет аватар
+//  updates the avatar
 const updateAvatar = (req, res, next) => {
   const { avatar } = req.body;
   User.findByIdAndUpdate(
@@ -149,7 +148,7 @@ const updateAvatar = (req, res, next) => {
     },
   )
     .orFail(() => {
-      const err = new Error('Ресурс не найден');
+      const err = new Error('Resource not found');
       err.statusCode = 404;
       throw err;
     })
@@ -161,7 +160,7 @@ const updateAvatar = (req, res, next) => {
         next(err);
       }
       if (err.name === 'ValidationError') {
-        const badRequest = new Error('Переданы некорректные данные');
+        const badRequest = new Error('Incorrect data has been sent');
         badRequest.statusCode = 400;
         next(badRequest);
       }
@@ -169,25 +168,23 @@ const updateAvatar = (req, res, next) => {
     });
 };
 
-// аутентификация
+// authentication
 const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      console.log(user);
-      // аутентификация успешна! пользователь в переменной user
-      // создадим токен
+      // authentication is successful! user in user variable
+      // create a token
       const token = jwt.sign(
         { _id: user._id },
         NODE_ENV !== 'production' ? JWT_SECRET : 'prod-secret',
         { expiresIn: '7d' },
       );
-      console.log(token);
-      // вернём токен в теле ответа
-      return res.status(200).send({ token }); // или заголовок Set-Cookie
+      // return the token in the response body
+      return res.status(200).send({ token });
     })
     .catch((err) => {
-      // ошибка приодит из findUserByCredentials. См models - user.js - метод
+      // the error comes from findUserByCredentials. See models - user.js - method
       if (err.name === 'LoginError' && err.code === 11000) {
         next(err);
       }

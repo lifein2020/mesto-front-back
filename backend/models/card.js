@@ -13,22 +13,15 @@ const cardSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => isURL(v),
-      message: 'Неправильный формат ссылки',
+      message: 'Wrong link format',
     },
   },
   owner: {
-    type: mongoose.Schema.Types.ObjectId, //  т.к. тут ссылка на автора объявления
-    ref: 'user', // то тут имя модели, на которую ссылаемся
+    type: mongoose.Schema.Types.ObjectId, //  because here is a link to the author of the ad,
+    ref: 'user', // then here is the name of the model we are referring to
     required: true,
   },
   likes: {
-    // при этом возникает ошибка "TypeError: Cannot read properties of undefined (reading 'some')"
-    // в src/components/Card/Card.js:20:
-    // const isLiked = props.card.likes.some(i => i === currentUser._id);
-    // не нашла решение проблемы и понимание, почему так, не приходит
-
-    // type: mongoose.Schema.Types.ObjectId,
-    // ref: 'user',
     type: Array,
     default: [],
   },

@@ -1,22 +1,17 @@
-// connect express
-
-// Подключаем express
+// Connect an express
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
 require('dotenv').config();
-// console.log(process.env.NODE_ENV);
-// console.log(process.env.JWT_SECRET);
 
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
-// const cookieParser = require('cookie-parser');
 
-//  Настроим порт, который должен слушать приложение
+// Set the port that the application should listen on
 const { PORT = 3005 } = process.env;
 
-// Создаем приложение
+// Create an application
 const app = express();
 
 const validator = require('validator');
@@ -33,7 +28,7 @@ const {
   errorLogger,
 } = require('./middlewares/logger');
 
-// валидация ссылок
+// Link validation
 const method = (value) => {
   const result = validator.isURL(value);
   if (result) {
@@ -43,9 +38,8 @@ const method = (value) => {
 };
 
 const auth = require('./middlewares/auth');
-// const cors = require('./middlewares/cors');
 
-// подключаемся к серверу mongo. Имя бд  - mestodb.
+// Connect to mongo server. Database name is mestodb.
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
 })
@@ -54,28 +48,27 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
     console.log('No connection. Error:', err);
   });
 
-// парсер для обработки тела запроса в PUT
+// Parser for processing the request body in PUT
 app.use(express.json());
 
-// подключение политики безопасности CORS
-// app.use(cors);
+// Attaching CORS security policy
 app.use(cors());
 /* app.use(cors({
-  origin: 'http://localhost:3000/',
+  origin: 'http://localhost:3005/',
   optionsSuccessStatus: 200,
 })); */
 
-// подключаем логгер запросов как мидлвэр до всех обработчиков роутов:
+// Connect the request logger as a middleware to all route handlers:
 app.use(requestLogger);
 
-//  краш-тест сервера
+// Server crash test
 app.get('/crash-test', () => {
   setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
+    throw new Error('The server is about to crash');
   }, 0);
 });
 
-// роут для регистрации
+// Route for registration
 app.post('/sign-up', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
@@ -86,7 +79,7 @@ app.post('/sign-up', celebrate({
   }),
 }), createUser);
 
-// роут для аутентификации
+// Route for authentication
 app.post('/sign-in', celebrate({
   body: Joi.object().keys({
     email: Joi.string().email().required(),
@@ -94,32 +87,30 @@ app.post('/sign-in', celebrate({
   }),
 }), login);
 
-// защита авторизацией всех роутов строками ниже
+// Protection by authorization of all routes with the lines below
 app.use(auth);
 
-// console.log(auth);
-
-//  подключаем роуты
+// Connect routes
 app.use('/', userRouter); //  localhost:PORT/ + userRouter
 app.use('/', cardRouter); //  localhost:PORT/ + cardRouter
 
-// подключаем логгер ошибок после обработчиков роутов и до обработчиков ошибок
+// We connect the error logger after the route handlers and before the error handlers
 app.use(errorLogger);
 
-// ошибка роутеризации
+// Routing error
 app.use((req, res, next) => {
-  const notFound = new Error('Ресурс не найден');
+  const notFound = new Error('Resources not found');
   notFound.statusCode = 404;
   next(notFound);
 });
 
-// обработчик ошибок celebrate
+// Error handler - celebrate
 app.use(errors());
 
-// здесь обрабатываем все ошибки централизованно
+// Here we handle all errors centrally
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
-  const message = err.message || `Ошибка на стороне сервера, ${err}`;
+  const message = err.message || `Server side error, ${err}`;
   res.status(statusCode).send(message);
 
   next();

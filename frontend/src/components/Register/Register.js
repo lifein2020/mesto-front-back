@@ -28,7 +28,7 @@ function Register({onRegister}) {
 
     return(
         <div className="form">
-        <h2 className="form__title">Регистрация</h2>
+        <h2 className="form__title">Sign up</h2>
         <form 
             onSubmit={handleSubmit}
         >
@@ -50,15 +50,15 @@ function Register({onRegister}) {
                 name="password"
                 autoComplete="off"
                 required
-                placeholder="Пароль"
+                placeholder="Password"
                 value={userPassword || ''}
                 onChange={handleChangeUserPassword}
             ></input>
-            <button type="submit" className="form__button">Зарегистрироваться</button>
+            <button type="submit" className="form__button">Sign up</button>
         </form>
         <Route path="/sign-up">
             <div className="form__link">
-                <Link className="form__link_sign" to="sign-in">Уже зарегистрированы? Войти</Link>
+                <Link className="form__link_sign" to="sign-in">Already registered? Sign in</Link>
             </div>
         </Route>
     </div>

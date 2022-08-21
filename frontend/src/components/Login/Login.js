@@ -27,7 +27,7 @@ function Login({onLogin}) {
 
     return(
         <div className="form">
-            <h2 className="form__title">Вход</h2>
+            <h2 className="form__title">Sign in</h2>
             <form onSubmit={handleSubmit}>
                 <input 
                     type="email"
@@ -47,11 +47,11 @@ function Login({onLogin}) {
                     name="password"
                     autoComplete="off"
                     required
-                    placeholder="Пароль"
+                    placeholder="Password"
                     value={userPassword || ''}
                     onChange={handleChangeUserPassword}
                 ></input>
-                <button type="submit" className="form__button">Войти</button>
+                <button type="submit" className="form__button">Enter</button>
             </form>
         </div>
     )
