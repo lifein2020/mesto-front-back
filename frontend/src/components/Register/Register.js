@@ -54,11 +54,11 @@ function Register({onRegister}) {
                 value={userPassword || ''}
                 onChange={handleChangeUserPassword}
             ></input>
-            <button type="submit" className="form__button">Sign up</button>
+            <button type="submit" className="form__button">Continue</button>
         </form>
         <Route path="/sign-up">
             <div className="form__link">
-                <Link className="form__link_sign" to="sign-in">Already registered? Sign in</Link>
+                <Link className="form__link_sign" to="sign-in">Already registered? Login</Link>
             </div>
         </Route>
     </div>

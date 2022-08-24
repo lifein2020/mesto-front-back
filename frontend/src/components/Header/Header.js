@@ -11,7 +11,7 @@ function Header({ onSignOut, email }) {
         <header className="header">
             <img src={logo} className="header__logo" alt="Лототип проекта Место" />
             <Route path="/sign-up">
-                <Link className="header__sign-link" to="sign-in">Sign in</Link>
+                <Link className="header__sign-link" to="sign-in">Login</Link>
             </Route>
             <Route path="/sign-in">
                 <Link className="header__sign-link" to="sign-up">Sign up</Link>

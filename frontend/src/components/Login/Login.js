@@ -27,7 +27,7 @@ function Login({onLogin}) {
 
     return(
         <div className="form">
-            <h2 className="form__title">Sign in</h2>
+            <h2 className="form__title">Log in</h2>
             <form onSubmit={handleSubmit}>
                 <input 
                     type="email"
@@ -51,7 +51,7 @@ function Login({onLogin}) {
                     value={userPassword || ''}
                     onChange={handleChangeUserPassword}
                 ></input>
-                <button type="submit" className="form__button">Enter</button>
+                <button type="submit" className="form__button">Continue</button>
             </form>
         </div>
     )

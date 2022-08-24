@@ -35,7 +35,7 @@ so that the server is restarted when the project files are changed:
 npm install nodemon -D
 ```
 
-to include the [Joi](https://joi.dev/api/) validation as a middleware,[celebrate](https://github.com/arb/celebrate) library is used:
+to include the [Joi](https://joi.dev/api/) validation as a middleware, [celebrate](https://github.com/arb/celebrate) library is used:
 ```bash
 npm i celebrate
 ```
@@ -92,7 +92,7 @@ The auxiliary directories:
 ```bash
 npm install
 ```
-* Frontend \
+Frontend. \
 build a project for priduction into the dist folder:
 ```bash
 npm run build
@@ -103,7 +103,7 @@ run the development server:
 npm run start
 ```
 
-* Backend \
+Backend. \
 run express-server on port 3005:
 ```bash
 npm run start
