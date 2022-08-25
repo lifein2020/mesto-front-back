@@ -117,10 +117,10 @@ npm run dev
 
 <!-- [http://localhost:3000](http://localhost:3000) will be open on your browser to see the result. -->
 
-![Sing up page](https://github.com/lifein2020/mesto-front-back/tree/main/frontend/src/images/signup.png)
+![Sing up page](https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/signup.png)
 
-![Login page](https://github.com/lifein2020/mesto-front-back/tree/main/frontend/src/images/login.png)
+![Login page](https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/login.png)
 
-![Main page](https://github.com/lifein2020/mesto-front-back/tree/main/frontend/src/images/main.png)
+![Main page](https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/main.png)
 
-<img src="https://github.com/lifein2020/mesto-front-back/tree/main/frontend/src/images/main.png" width="50" height="50"/>
+<img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/main.png" width="50" height="80"/>
