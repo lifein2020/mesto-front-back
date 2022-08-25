@@ -89,6 +89,7 @@ The auxiliary directories:
 - `.eslintrc` - custom rule file
 
 ## Getting Started:
+install npm dependencies:
 ```bash
 npm install
 ```
@@ -115,3 +116,7 @@ npm run dev
 ```
 
 <!-- [http://localhost:3000](http://localhost:3000) will be open on your browser to see the result. -->
+
+![Иллюстрация к проекту](https://github.com/lifein2020/react-mesto-auth/blob/master/src/images/kusto.jpg)
+
+![Иллюстрация к проекту 2](https://github.com/lifein2020/react-mesto-auth/raw/master/src/images/kusto.jpg)
