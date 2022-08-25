@@ -1,24 +1,53 @@
 # Mesto (frontend + backend)
 
-Responsive development interactive application including frontend and backend parts.  
+Responsive development interactive application including frontend and backend parts.
+
+<img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/main.png" width="200" height="250"/> 
 
 ## Functionality:
 * registration
+<div align="left">
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/signup.png" width="200" height="250"/>
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/signup_wrong.png" width="200" height="250"/>
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/signup_sucs.png" width="200" height="250"/>
+</div>
+
 * authorization
+<div align="left">
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/login.png" width="200" height="250"/> 
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/login_wrong.png" width="200" height="250"/> 
+</div>
+
 * edit profile data
+<img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/edit.png" width="200" height="250"/> 
+
 * change the avatar
+<img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/avatar.png" width="200" height="250"/> 
+
 * add, delete, zoom images
+<div align="left">
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/place.png" width="200" height="250"/> 
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/zoom.png" width="200" height="250"/> 
+</div>
+
 * put likes
 * likes counter
 * modals pop-up 
 
 ## Technology stack:
-* React.js
-* CSS
-* BEM, file structure organization Nested (frontend/scr/blocks)
-* Express.js
-* MongoDB
-* npm:
+
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![CSS3](https://img.shields.io/badge/css-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
+![BEM](https://img.shields.io/badge/BEM-ffcd00.svg?style=for-the-badge&logo=bem&logoColor=white)
+
+File structure organization Nested (frontend/scr/blocks) in accordance with BEM methodology.
+
+<details>
+<summary>👇 Installed npm.</summary>
+    <hr>
 
 install express.js:
 ```bash
@@ -77,7 +106,9 @@ npm i eslint-config-airbnb-base
 npm i eslint-plugin-import
 ```
 
-## Directory `backend/`
+</details>
+
+## Directory `backend/`:
 - `app.js` - includes the main logic of the server, starting and connecting to the database
 - `/routes` - folder with router files
 - `/controllers` - folder with user and card controllers files
@@ -117,10 +148,4 @@ npm run dev
 
 <!-- [http://localhost:3000](http://localhost:3000) will be open on your browser to see the result. -->
 
-![Sing up page](https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/signup.png)
-
-![Login page](https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/login.png)
-
-![Main page](https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/main.png)
-
-<img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/main.png" width="50" height="80"/>
+<!-- ![Main page](https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/main.png) -->
