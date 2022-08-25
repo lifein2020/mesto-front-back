@@ -117,6 +117,10 @@ npm run dev
 
 <!-- [http://localhost:3000](http://localhost:3000) will be open on your browser to see the result. -->
 
-![Иллюстрация к проекту](https://github.com/lifein2020/react-mesto-auth/blob/master/src/images/kusto.jpg)
+![Sing up page](https://github.com/lifein2020/mesto-front-back/tree/main/frontend/src/images/signup.png)
 
-![Иллюстрация к проекту 2](https://github.com/lifein2020/react-mesto-auth/raw/master/src/images/kusto.jpg)
+![Login page](https://github.com/lifein2020/mesto-front-back/tree/main/frontend/src/images/login.png)
+
+![Main page](https://github.com/lifein2020/mesto-front-back/tree/main/frontend/src/images/main.png)
+
+<img src="https://github.com/lifein2020/mesto-front-back/tree/main/frontend/src/images/main.png" width="50" height="50"/>
