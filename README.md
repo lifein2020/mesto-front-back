@@ -37,6 +37,7 @@ Responsive development interactive application including frontend and backend pa
 * put likes
 * likes counter
 * modals pop-up 
+* burger menu
 
 ## Technology stack:
 
@@ -156,5 +157,5 @@ npm run dev
 
 ## What can be improved?
 
-* add JS client side validation
+* add JS (customized) client side validation
 * add modal pop-up with a request to the client to confirm the deletion of the card
