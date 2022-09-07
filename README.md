@@ -3,9 +3,9 @@
 Responsive development interactive application including frontend and backend parts.
 <div align="left">
     <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/main.png" width="200" height="250"/> 
-    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/tablet.png" width="200" height="250"/> 
-    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/mobile1.png" width="200" height="250"/> 
-    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/mobile2.png" width="200" height="250"/>
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/tablet.png" width="170" height="250"/> 
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/mobile1.png" width="110" height="250"/> 
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/mobile2.png" width="110" height="250"/>
 </div>
 
 ## Functionality:
