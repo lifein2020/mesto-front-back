@@ -1,0 +1,10 @@
+.header__menu_active {
+    right: 0;
+    padding: 50px 19px 120px;
+}
+
+@media screen and (min-width: 768px) {
+    .header__menu_active {
+        padding: 0;
+    }
+}

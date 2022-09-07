@@ -1,0 +1,24 @@
+.header__menu {
+    display: flex;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    right: -100%;
+    transition: .9s;
+    top: 85px;
+    flex-direction: column;
+    gap: 50px;
+    background-color: black;;
+    opacity: .9;
+    text-align: right;
+}
+
+@media screen and (min-width: 768px) {
+    .header__menu {
+        flex-direction: row;
+        position: static;
+        transition: 0s;
+        gap: 24px;
+    }
+}
+  

@@ -1,0 +1,11 @@
+.burgermenu_active .burgermenu__bar:nth-child(1){
+    transform: translateY(11px) rotate(45deg);
+}
+
+.burgermenu_active .burgermenu__bar:nth-child(2){
+    opacity: 0;
+}
+
+.burgermenu_active .burgermenu__bar:nth-child(3){
+    transform: translateY(-11px) rotate(-45deg);
+}

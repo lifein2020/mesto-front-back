@@ -263,6 +263,16 @@ function App() {
     history.push('/login');
   }
 
+  const [isBurgermenuActive, setIsBurgermenuActive] = useState(false);
+
+  const handleBurgermenuOpen = () => {
+    setIsBurgermenuActive(true);
+  }
+
+  const handleBurgermenuClose = () => {
+    setIsBurgermenuActive(false);
+  }
+
   return (
     <>
       <div className="page">
@@ -270,6 +280,9 @@ function App() {
           <Header 
               onSignOut={onSignOut}
               email={userEmail}
+              isBurgerActive={isBurgermenuActive}
+              onBurgermenuOpen= {handleBurgermenuOpen}
+              onBurgermenuClose={handleBurgermenuClose}
           />
           <Switch>
             <ProtectedRoute 

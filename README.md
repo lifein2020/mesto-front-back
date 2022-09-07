@@ -1,8 +1,12 @@
 # Mesto (frontend + backend)
 
 Responsive development interactive application including frontend and backend parts.
-
-<img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/main.png" width="200" height="250"/> 
+<div align="left">
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/main.png" width="200" height="250"/> 
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/tablet.png" width="200" height="250"/> 
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/mobile1.png" width="200" height="250"/> 
+    <img src="https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/mobile2.png" width="200" height="250"/>
+</div>
 
 ## Functionality:
 * registration
@@ -149,3 +153,8 @@ npm run dev
 <!-- [http://localhost:3000](http://localhost:3000) will be open on your browser to see the result. -->
 
 <!-- ![Main page](https://github.com/lifein2020/mesto-front-back/raw/main/frontend/src/images/main.png) -->
+
+## What can be improved?
+
+* add JS client side validation
+* add modal pop-up with a request to the client to confirm the deletion of the card
